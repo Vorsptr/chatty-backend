@@ -14,6 +14,7 @@
     "@bull-board/express": "^5.1.2",
     "@bull-board/ui": "^5.1.2",
     "@socket.io/redis-adapter": "^8.2.0",
+    "bullmq": "^3.12.0",
     "bunyan": "^1.8.15",
     "compression": "^1.7.4",
     "cookie-session": "^2.0.0",
