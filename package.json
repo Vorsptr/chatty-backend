@@ -4,11 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon -r tsconfig-paths/register src/app.ts | bunyan -o short"
+    "start": "nodemon ./build/app.js",
+    "dev": "nodemon -r tsconfig-paths/register src/app.ts | bunyan -o short",
+    "build": "ttsc -p ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bull-board/express": "^5.1.2",
+    "@bull-board/ui": "^5.1.2",
     "@socket.io/redis-adapter": "^8.2.0",
     "bunyan": "^1.8.15",
     "compression": "^1.7.4",
@@ -25,7 +29,8 @@
     "socket.io": "^4.6.1",
     "ttypescript": "^1.5.15",
     "typescript": "^5.0.4",
-    "typescript-transform-paths": "^3.4.6"
+    "typescript-transform-paths": "^3.4.6",
+    "web3": "^1.7.4"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.8",
