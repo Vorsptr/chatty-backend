@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./build/app.js",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts | bunyan -o short",
-    "build": "ttsc -p ."
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +14,11 @@
     "@bull-board/express": "^5.1.2",
     "@bull-board/ui": "^5.1.2",
     "@socket.io/redis-adapter": "^8.2.0",
+    "bcryptjs": "^2.4.3",
+    "bull": "^4.10.4",
     "bullmq": "^3.12.0",
     "bunyan": "^1.8.15",
+    "cloudinary": "^1.36.4",
     "compression": "^1.7.4",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
@@ -25,21 +28,27 @@
     "helmet": "^6.1.5",
     "hpp": "^0.2.3",
     "http-status-codes": "^2.2.0",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
     "mongoose": "^7.1.0",
     "redis": "^4.6.6",
     "socket.io": "^4.6.1",
-    "ttypescript": "^1.5.15",
+    "tsc-alias": "^1.8.6",
     "typescript": "^5.0.4",
     "typescript-transform-paths": "^3.4.6",
     "web3": "^1.7.4"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/bunyan": "^1.8.8",
     "@types/compression": "^1.7.2",
     "@types/cookie-session": "^2.0.44",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/hpp": "^0.2.2",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/lodash": "^4.14.194",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0"
   }

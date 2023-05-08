@@ -67,6 +67,14 @@ export class FileTooLargeError extends CustomError {
   }
 }
 
+export class FileUploadError extends CustomError {
+  statusCode = HTTP_STATUS.REQUEST_TOO_LONG;
+  status = "error";
+  constructor(message: string) {
+    super(message);
+  }
+}
+
 export class ServerError extends CustomError {
   statusCode = HTTP_STATUS.SERVICE_UNAVAILABLE;
   status = "error";
