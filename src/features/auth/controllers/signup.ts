@@ -67,7 +67,6 @@ export class SignUp {
       "avatarColor",
       "password",
     ]);
-    console.log(userDataForCache);
     authQueue.addAuthUserJob("addAuthUserToDB", { value: userDataForCache });
     userQueue.addUserJob("addUserToDB", { value: userDataForCache });
 

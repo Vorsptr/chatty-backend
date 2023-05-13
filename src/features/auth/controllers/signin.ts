@@ -7,8 +7,12 @@ import { BadRequestError } from "@global/helpers/error-handler";
 import { loginSchema } from "@auth/schemes/signin";
 import { IAuthDocument } from "@auth/interfaces/auth.interface";
 import { authService } from "@service/db/auth.service";
-import { IUserDocument } from "@user/interfaces/user.interface";
+import {
+  IResetPasswordParams,
+  IUserDocument,
+} from "@user/interfaces/user.interface";
 import { userService } from "@service/db/user.service";
+
 export class SignIn {
   @joiValidation(loginSchema)
   public async read(req: Request, res: Response): Promise<void> {
