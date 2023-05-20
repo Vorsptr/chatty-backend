@@ -38,54 +38,34 @@ export class UserCache extends BaseCache {
       bgImageVersion,
       social,
     } = createdUser;
-    const firstList: string[] = [
-      "_id",
-      `${_id}`,
-      "uId",
-      `${uId}`,
-      "username",
-      `${username}`,
-      "email",
-      `${email}`,
-      "avatarColor",
-      `${avatarColor}`,
-      "postsCount",
-      `${postsCount}`,
-      "createdAt",
-      `${createdAt}`,
-    ];
-    const secondList: string[] = [
-      "blocked",
-      JSON.stringify(blocked),
-      "blockedBy",
-      JSON.stringify(blockedBy),
-      "profilePicture",
-      `${profilePicture}`,
-      "followersCount",
-      `${followersCount}`,
-      "followingCount",
-      `${followingCount}`,
-      "notifications",
-      JSON.stringify(notifications),
-      "social",
-      JSON.stringify(social),
-    ];
-    const thirdList: string[] = [
-      "work",
-      `${work}`,
-      "location",
-      `${location}`,
-      "school",
-      `${school}`,
-      "quote",
-      `${quote}`,
-      "bgImageId",
-      `${bgImageId}`,
-      "bgImageVersion",
-      `${bgImageVersion}`,
-    ];
+    const firstList = {
+      _id: `${_id}`,
+      uId: `${uId}`,
+      username: `${username}`,
+      email: `${email}`,
+      avatarColor: `${avatarColor}`,
+      postsCount: `${postsCount}`,
+      createdAt: `${createdAt}`,
+    };
+    const secondList = {
+      blocked: JSON.stringify(blocked),
+      blockedBy: JSON.stringify(blockedBy),
+      profilePicture: `${profilePicture}`,
+      followersCount: `${followersCount}`,
+      followingCount: `${followingCount}`,
+      notifications: JSON.stringify(notifications),
+      social: JSON.stringify(social),
+    };
+    const thirdList = {
+      work: `${work}`,
+      location: `${location}`,
+      school: `${school}`,
+      quote: `${quote}`,
+      bgImageId: `${bgImageId}`,
+      bgImageVersion: `${bgImageVersion}`,
+    };
 
-    const dataToSave: string[] = [...firstList, ...secondList, ...thirdList];
+    const dataToSave = { ...firstList, ...secondList, ...thirdList };
 
     try {
       if (!this.client.isOpen) {
@@ -95,7 +75,8 @@ export class UserCache extends BaseCache {
         score: parseInt(useruId, 10),
         value: `${key}`,
       });
-      await this.client.HSET(`users:${key}`, dataToSave);
+      for (const [itemKey, itemValue] of Object.entries(dataToSave))
+        await this.client.HSET(`users:${key}`, `${itemKey}`, `${itemValue}`);
     } catch (error) {
       log.error(error);
       throw new ServerError("Server error, try again");
@@ -121,7 +102,7 @@ export class UserCache extends BaseCache {
       return response;
     } catch (error) {
       log.error(error);
-      throw new ServerError("Something went wrotn. Try again");
+      throw new ServerError("Something went wrong. Try again");
     }
   }
 }
