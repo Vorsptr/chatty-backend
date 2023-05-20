@@ -30,6 +30,7 @@
       "@worker/*": ["src/shared/workers/*"],
       "@auth/*": ["src/features/auth/*"],
       "@user/*": ["src/features/user/*"],
+      "@posts/*": ["src/features/posts/*"],
       "@root/*": ["src/*"]
     }
   }
