@@ -36,7 +36,7 @@ export class Create {
       imgId: "",
       createdAt: new Date(),
       reactions: { like: 0, love: 0, haha: 0, sad: 0, wow: 0, angry: 0 },
-    } as IPostDocument;
+    } as unknown as IPostDocument;
 
     await postCache.savePostToCache({
       key: postObjectId,
@@ -77,7 +77,7 @@ export class Create {
       imgId: result?.public_id,
       createdAt: new Date(),
       reactions: { like: 0, love: 0, haha: 0, sad: 0, wow: 0, angry: 0 },
-    } as IPostDocument;
+    } as unknown as IPostDocument;
 
     await postCache.savePostToCache({
       key: postObjectId,
