@@ -7,8 +7,9 @@ import { config } from "@root/config";
 import { IAuthJob } from "@auth/interfaces/auth.interface";
 import { IEmailJob } from "@user/interfaces/user.interface";
 import { IPostJobData } from "@posts/interfaces/post.interface";
+import { IReactionJob } from "@reactions/interfaces/reaction.interface";
 
-type IBaseJobData = IAuthJob | IEmailJob | IPostJobData;
+type IBaseJobData = IAuthJob | IEmailJob | IPostJobData | IReactionJob;
 
 let bullAdapters: BullAdapter[] = [];
 export let serverAdapter: ExpressAdapter;
@@ -44,7 +45,7 @@ export abstract class BaseQueue {
 
   protected addJob(name: string, data: IBaseJobData): void {
     this.queue.add(name, data, {
-      attempts: 3,
+      attempts: 1,
       backoff: { type: "fixed", delay: 5000 },
     });
   }

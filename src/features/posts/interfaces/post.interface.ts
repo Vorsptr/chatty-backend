@@ -1,15 +1,7 @@
 // import { IReactions } from "@root/features/reactions/interfaces/reaction.interface";
+import { IReactions } from "@reactions/interfaces/reaction.interface";
 import { ObjectId } from "mongodb";
 import mongoose, { Document } from "mongoose";
-
-export interface IReactions {
-  like: number;
-  love: number;
-  haha: number;
-  wow: number;
-  sad: number;
-  angry: number;
-}
 
 export interface IPostDocument extends Document {
   _id?: string | mongoose.Types.ObjectId;
@@ -59,3 +51,4 @@ export interface IQueryComplete {
 export interface IQueryDeleted {
   deletedCount?: number;
 }
+export { IReactions };
