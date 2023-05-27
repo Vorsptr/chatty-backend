@@ -51,7 +51,7 @@ export abstract class BaseQueue {
 
   protected addJob(name: string, data: IBaseJobData): void {
     this.queue.add(name, data, {
-      attempts: 1,
+      attempts: 3,
       backoff: { type: "fixed", delay: 5000 },
     });
   }
