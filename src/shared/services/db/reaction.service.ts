@@ -7,11 +7,14 @@ import {
   IReactionJob,
 } from "@reactions/interfaces/reaction.interface";
 import { ReactionModel } from "@reactions/models/reaction.model";
+import { config } from "@root/config";
 import { UserCache } from "@service/redis/user.cache";
 import { IUserDocument } from "@user/interfaces/user.interface";
 import { omit } from "lodash";
+import Logger from "bunyan";
 import mongoose from "mongoose";
 const userCache: UserCache = new UserCache();
+const log: Logger = config.createLogger("reactionService");
 class ReactionService {
   public async addReactionDataToDB(reactionData: IReactionJob): Promise<void> {
     const {
@@ -27,12 +30,11 @@ class ReactionService {
       reactionObject as IReactionDocument;
     if (previousReaction.length) {
       updatedReactionObject = omit(reactionObject, ["_id"]);
-      delete updatedReactionObject._id;
     }
     const updatedReaction: [IUserDocument, IReactionDocument, IPostDocument] =
       (await Promise.all([
         userCache.getUserFromCache(`${userTo}`),
-        ReactionModel.replaceOne(
+        ReactionModel.findOneAndReplace(
           { postId, type: previousReaction, username },
           updatedReactionObject,
           { upsert: true }

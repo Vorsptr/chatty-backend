@@ -12,7 +12,6 @@ export class Remove {
       `${req.currentUser!.username}`,
       JSON.parse(postReactions)
     );
-    console.log(postReactions);
     const databaseReactionData: IReactionJob = {
       postId,
       username: req.currentUser!.username,
